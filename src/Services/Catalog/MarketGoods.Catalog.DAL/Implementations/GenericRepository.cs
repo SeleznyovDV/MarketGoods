@@ -39,6 +39,9 @@ namespace MarketGoods.Catalog.DAL.Implementations
         }
         public IEnumerable<TEntity> GetAll(Func<TEntity, bool> filter = null)
         {
+            if (filter == null)
+                filter = entity => true;
+
             return entities.Where(filter);
         }
     }

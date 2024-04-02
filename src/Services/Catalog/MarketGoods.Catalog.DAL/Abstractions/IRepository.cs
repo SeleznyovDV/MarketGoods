@@ -4,7 +4,7 @@ namespace MarketGoods.Catalog.DAL.Abstractions
 {
     public interface IRepository<TEntity> where TEntity : BaseEntity<Guid>
     {
-        IEnumerable<TEntity> GetAll(Func<TEntity, bool> filter);
+        IEnumerable<TEntity> GetAll(Func<TEntity, bool> filter = null);
         void Create(TEntity entity);
         void Update(TEntity newEntity);
         void Delete(TEntity entity);
