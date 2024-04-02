@@ -1,4 +1,4 @@
-﻿using MarketGoods.Catalog.DAL.Implementations;
+﻿using MarketGoods.Catalog.DAL.Abstractions;
 using MarketGoods.Catalog.Domain.Abstractions;
 using MarketGoods.Catalog.Entities;
 
@@ -6,8 +6,8 @@ namespace MarketGoods.Catalog.Domain.Implementations
 {
     public class GoodService : IGoodService
     {
-        private readonly Goods _goods;
-        public GoodService(Goods goods)
+        private readonly IGoodRepository _goods;
+        public GoodService(IGoodRepository goods)
         {
             _goods = goods;
         }

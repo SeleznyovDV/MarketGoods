@@ -3,8 +3,8 @@ using MarketGoods.Catalog.Entities;
 
 namespace MarketGoods.Catalog.DAL.Implementations
 {
-    public class UserRoles : GenericRepository<UserRole>
+    public class UserRepository : GenericRepository<User>, IUserRepository
     {
-        public UserRoles(DBFakeClass context) : base(context) { }
+        public UserRepository(DBFakeClass context) : base(context) { }
     }
 }

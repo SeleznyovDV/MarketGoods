@@ -1,6 +1,7 @@
-﻿using MarketGoods.Catalog.Entities.Abstractions;
+﻿using MarketGoods.Catalog.DAL.Abstractions;
+using MarketGoods.Catalog.Entities.Abstractions;
 
-namespace MarketGoods.Catalog.DAL.Abstractions
+namespace MarketGoods.Catalog.DAL.Implementations
 {
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity<Guid>
     {
@@ -13,12 +14,12 @@ namespace MarketGoods.Catalog.DAL.Abstractions
             entities = context.Set<TEntity>();
         }
 
-        public void Create(TEntity entity) 
+        public void Create(TEntity entity)
         {
             entities.Add(entity);
         }
 
-        public void Update(TEntity newEntity) 
+        public void Update(TEntity newEntity)
         {
             var oldEntity = entities.Where(x => x.Id == newEntity.Id).FirstOrDefault();
             if (oldEntity != null)
@@ -27,18 +28,18 @@ namespace MarketGoods.Catalog.DAL.Abstractions
                 entities.Add(oldEntity);
             }
         }
-        public void Delete(TEntity entity) 
-        {  
+        public void Delete(TEntity entity)
+        {
             if (entities.Any(x => x.Id == entity.Id))
                 entities.Remove(entity);
         }
-        public TEntity Get(Guid id) 
-        { 
-            return entities.FirstOrDefault(x => x.Id == id); 
+        public TEntity Get(Guid id)
+        {
+            return entities.FirstOrDefault(x => x.Id == id);
         }
-        public IEnumerable<TEntity> GetAll(Func<TEntity,bool> filter = null) 
-        {  
-            return entities.Where(filter); 
+        public IEnumerable<TEntity> GetAll(Func<TEntity, bool> filter = null)
+        {
+            return entities.Where(filter);
         }
     }
 }

@@ -1,10 +1,9 @@
 ﻿using MarketGoods.Catalog.DAL.Abstractions;
 using MarketGoods.Catalog.Entities;
-
 namespace MarketGoods.Catalog.DAL.Implementations
 {
-    public class Users : GenericRepository<User>
+    public class GoodRepository : GenericRepository<Good>, IGoodRepository
     {
-        public Users(DBFakeClass context) : base(context) { }
+        public GoodRepository(DBFakeClass context) : base(context) { }
     }
 }

@@ -1,15 +1,15 @@
-﻿using MarketGoods.Catalog.DAL.Implementations;
-using MarketGoods.Catalog.Domain.Abstractions;
+﻿using MarketGoods.Catalog.Domain.Abstractions;
+using MarketGoods.Catalog.DAL.Abstractions;
 using MarketGoods.Catalog.Entities;
 
 namespace MarketGoods.Catalog.Domain.Implementations
 {
     public class OrderService : IOrderService
     {
-        private readonly Orders _orders;
-        private readonly Goods _goods;
+        private readonly IOrderRepository _orders;
+        private readonly IGoodRepository _goods;
 
-        public OrderService(Orders orders, Goods goods)
+        public OrderService(IOrderRepository orders, IGoodRepository goods)
         {
             _orders = orders;
             _goods = goods;

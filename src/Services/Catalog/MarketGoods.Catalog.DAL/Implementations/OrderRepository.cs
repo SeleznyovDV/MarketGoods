@@ -3,8 +3,8 @@ using MarketGoods.Catalog.Entities;
 
 namespace MarketGoods.Catalog.DAL.Implementations
 {
-    public class Payments : GenericRepository<Payment>
+    public class OrderRepository : GenericRepository<Order>, IOrderRepository
     {
-        public Payments(DBFakeClass context) : base(context) { }
+        public OrderRepository(DBFakeClass context) : base(context) { }
     }
 }
