@@ -44,7 +44,7 @@ namespace MarketGoods.Catalog.Domain.Implementations
         }
 
         /// <summary>
-        /// Send the payment to the payment system.
+        /// Check payment status in the payment system.
         /// </summary>
         /// <param name="payment">Payment.</param>
         public void CheckPaymentStatus(Payment payment)
