@@ -1,6 +1,6 @@
 ﻿namespace MarketGoods.Domain.Customers
 {
-    using MarketGoodsDDD.Domain.ValueObjects;
+    using MarketGoods.Domain.ValueObjects;
     public sealed class Customer
     {
         public CustomerId Id { get; private set; }

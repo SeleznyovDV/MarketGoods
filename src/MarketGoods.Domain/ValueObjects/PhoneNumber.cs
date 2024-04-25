@@ -1,4 +1,4 @@
-﻿namespace MarketGoodsDDD.Domain.ValueObjects
+﻿namespace MarketGoods.Domain.ValueObjects
 {
     using System.Text.RegularExpressions;
 

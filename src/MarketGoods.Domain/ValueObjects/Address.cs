@@ -1,4 +1,4 @@
-﻿namespace MarketGoodsDDD.Domain.ValueObjects
+﻿namespace MarketGoods.Domain.ValueObjects
 {
     using MarketGoods.Domain.ValueObjects;
     public partial record Address

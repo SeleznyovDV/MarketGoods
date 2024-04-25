@@ -7,10 +7,10 @@
     public sealed class Review
     {
         public ReviewId ReviewId { get; private set; }
-        public string Text { get; set; }
-        public Customer Customer { get; set; }
-        public Good Good { get; set; }
-        public Raiting Rating { get; set; }
+        public string Text { get; private set; }
+        public Customer Customer { get; private set; }
+        public Good Good { get; private set; }
+        public Raiting Rating { get; private set; }
         public Review(ReviewId reviewId, string text, Customer customer, Good good, Raiting raiting)
         {
             ReviewId = reviewId;
