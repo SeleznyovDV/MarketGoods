@@ -17,7 +17,6 @@
         public async Task AddAsync(Order order)
         {
             await _db.Orders.AddAsync(order);
-            await _db.SaveChangesAsync();
         }
 
         public void Remove(Order order)

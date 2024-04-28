@@ -17,7 +17,6 @@
         public async Task AddAsync(Good good)
         {
             await _db.Goods.AddAsync(good);
-            await _db.SaveChangesAsync();
         }
 
         public void Remove(Good good)

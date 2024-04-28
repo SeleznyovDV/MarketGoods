@@ -17,7 +17,6 @@
         public async Task AddAsync(Customer customer)
         {
             await _db.Customers.AddAsync(customer);
-            await _db.SaveChangesAsync();
         }
 
         public void Remove(Customer customer)

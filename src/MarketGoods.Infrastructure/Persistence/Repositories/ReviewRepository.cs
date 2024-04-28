@@ -17,7 +17,6 @@
         public async Task AddAsync(Review review)
         {
             await _db.Reviews.AddAsync(review);
-            await _db.SaveChangesAsync();
         }
 
         public void Remove(Review review)

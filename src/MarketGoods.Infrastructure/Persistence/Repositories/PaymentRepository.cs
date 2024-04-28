@@ -17,7 +17,6 @@
         public async Task AddAsync(Payment payment)
         {
             await _db.Payments.AddAsync(payment);
-            await _db.SaveChangesAsync();
         }
 
         public void Remove(Payment payment)
