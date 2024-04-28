@@ -4,7 +4,7 @@
 	{
 		Task<Good?> GetAsync(GoodId id);
 		IQueryable<Good> GetAll(Func<Good, bool> filter);
-		Task UpdateAsync(Good good);
+		void Update(Good good);
 		void Remove(Good good);
 		Task AddAsync(Good good);
 	}

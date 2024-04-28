@@ -1,16 +1,16 @@
-﻿namespace MarketGoods.Domain.Customers
+﻿namespace MarketGoods.Domain.Users
 {
     using MarketGoods.Domain.ValueObjects;
-    public sealed class Customer
+    public sealed class User
     {
-        public CustomerId Id { get; private set; }
+        public UsersId Id { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string FullName { get => $"{FirstName} {LastName}"; }
         public PhoneNumber PhoneNumber { get; private set; }
         public Address Address { get; private set; }
         public string Email { get; private set; }
-        public Customer(CustomerId id, string firstName, string lastName, string email, Address address, PhoneNumber phoneNumber)
+        public User(UsersId id, string firstName, string lastName, string email, Address address, PhoneNumber phoneNumber)
         {
             Id = id;
             FirstName = firstName;
@@ -19,7 +19,7 @@
             Address = address;
             PhoneNumber = phoneNumber;
         }
-        public Customer()
+        public User()
         {
             
         }

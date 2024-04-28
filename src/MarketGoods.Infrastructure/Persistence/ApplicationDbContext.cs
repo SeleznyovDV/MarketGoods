@@ -1,7 +1,7 @@
 ﻿namespace MarketGoods.Infrastructure.Persistence
 {
     using MarketGoods.Application.Data;
-    using MarketGoods.Domain.Customers;
+    using MarketGoods.Domain.Users;
     using MarketGoods.Domain.Goods;
     using MarketGoods.Domain.Orders;
     using MarketGoods.Domain.Payments;
@@ -11,7 +11,7 @@
     using Microsoft.EntityFrameworkCore;
     public class ApplicationDbContext : DbContext, IApplicationDbContext, IUnitOfWork
     {
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Good> Goods { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Payment> Payments { get; set; }

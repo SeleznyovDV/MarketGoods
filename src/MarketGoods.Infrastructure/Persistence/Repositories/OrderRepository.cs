@@ -34,10 +34,9 @@
             return await _db.Orders.FindAsync(id);
         }
 
-        public async Task UpdateAsync(Order order)
+        public void Update(Order order)
         {
             _db.Orders.Update(order);
-            await _db.SaveChangesAsync();
         }
     }
 }

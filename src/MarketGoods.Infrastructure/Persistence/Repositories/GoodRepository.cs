@@ -34,10 +34,9 @@
             return await _db.Goods.FindAsync(id);
         }
 
-        public async Task UpdateAsync(Good good)
+        public void Update(Good good)
         {
             _db.Goods.Update(good);
-            await _db.SaveChangesAsync();
         }
     }
 }

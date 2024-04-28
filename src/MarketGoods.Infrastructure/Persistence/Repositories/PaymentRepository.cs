@@ -34,10 +34,9 @@
             return await _db.Payments.FindAsync(id);
         }
 
-        public async Task UpdateAsync(Payment payment)
+        public void Update(Payment payment)
         {
             _db.Payments.Update(payment);
-            await _db.SaveChangesAsync();
         }
 
     }

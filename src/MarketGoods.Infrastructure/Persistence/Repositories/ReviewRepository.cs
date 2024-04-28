@@ -34,10 +34,9 @@
             return await _db.Reviews.FindAsync(id);
         }
 
-        public async Task UpdateAsync(Review review)
+        public void Update(Review review)
         {
             _db.Reviews.Update(review);
-            await _db.SaveChangesAsync();
         }
     }
 }
