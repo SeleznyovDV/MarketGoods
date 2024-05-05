@@ -9,7 +9,7 @@
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("users");
+            builder.ToTable("Users");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
                 .HasConversion(userId => userId.Value, value => new UsersId(value));
