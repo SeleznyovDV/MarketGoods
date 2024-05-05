@@ -10,7 +10,8 @@
         public PhoneNumber PhoneNumber { get; private set; }
         public Address Address { get; private set; }
         public string Email { get; private set; }
-        public User(UsersId id, string firstName, string lastName, string email, Address address, PhoneNumber phoneNumber)
+        public UserRole Role { get; private set; }
+        public User(UsersId id, string firstName, string lastName, string email, Address address, PhoneNumber phoneNumber, UserRole role)
         {
             Id = id;
             FirstName = firstName;
@@ -18,6 +19,7 @@
             Email = email;
             Address = address;
             PhoneNumber = phoneNumber;
+            Role = role;
         }
         public User()
         {

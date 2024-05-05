@@ -6,18 +6,18 @@
 
     public sealed class Order
     {
-        public OrderId OrderId { get; private set; }
+        public OrderId Id { get; private set; }
         public IList<Good> Goods { get; private set; }
-        public User Customer { get; private set; }
+        public User User { get; private set; }
         public Payment Payment { get; private set; }
         public DateTime? Created { get; private set; }
-        public Order(OrderId orderId, IList<Good> goods, User customer, Payment payment, DateTime? created)
+        public Order(OrderId orderId, IList<Good> goods, User user, Payment payment)
         {
-            OrderId = orderId;
+            Id = orderId;
             Goods = goods;
-            Customer = customer;
+            User = user;
             Payment = payment;
-            Created = created;
+            Created = DateTime.Now;
         }
     }
 }
