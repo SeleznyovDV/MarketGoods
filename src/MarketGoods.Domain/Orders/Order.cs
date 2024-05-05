@@ -19,5 +19,9 @@
             Payment = payment;
             Created = DateTime.Now;
         }
+        public Order()
+        {
+            
+        }
     }
 }

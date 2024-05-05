@@ -14,5 +14,9 @@
             Description = description;
             Price = price;
         }
+        public Good()
+        {
+            
+        }
     }
 }

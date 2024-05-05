@@ -2,7 +2,6 @@
 {
     public partial record Address
     {
-        public Region Region { get; init; }
         public City City { get; init; }
         public string Street { get; init; }
         public string HouseNumber { get; init; }
@@ -14,7 +13,6 @@
 
         private Address(City city, string street, string houseNumber, string? entrance, int? floor, string? intercomCode, string flat, string postalCode)
         {
-            Region = city.Region;
             City = city;
             Street = street;
             HouseNumber = houseNumber;

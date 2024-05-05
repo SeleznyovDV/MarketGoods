@@ -16,5 +16,10 @@
             Amount = amount;
             Status = PaymentStatus.Created;
         }
+
+        public Payment()
+        {
+            
+        }
     }
 }

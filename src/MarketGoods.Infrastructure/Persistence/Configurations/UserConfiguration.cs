@@ -25,14 +25,13 @@
 
             builder.OwnsOne(c => c.Address, addressBuilder =>
             {
-                addressBuilder.OwnsOne(a => a.Region, regionBuilder =>
-                {
-                    regionBuilder.Property(r => r.Code).HasColumnName("RegionCode").HasMaxLength(2);
-                    regionBuilder.Property(r => r.Name).HasColumnName("RegionName").HasMaxLength(100);
-                });
-
                 addressBuilder.OwnsOne(a => a.City, cityBuilder =>
                 {
+                    cityBuilder.OwnsOne(c => c.Region, regionBuilder =>
+                    {
+                        regionBuilder.Property(r => r.Code).HasColumnName("RegionCode").HasMaxLength(2);
+                        regionBuilder.Property(r => r.Name).HasColumnName("Region").HasMaxLength(100);
+                    });
                     cityBuilder.Property(c => c.Name).HasColumnName("City").HasMaxLength(100);
                 });
 

@@ -19,5 +19,10 @@
             Good = good;
             Rating = raiting;
         }
+
+        public Review()
+        {
+            
+        }
     }
 }

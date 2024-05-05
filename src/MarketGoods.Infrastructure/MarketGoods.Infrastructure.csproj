@@ -13,4 +13,7 @@
     <ProjectReference Include="..\MarketGoods.Application\MarketGoods.Application.csproj" />
     <ProjectReference Include="..\MarketGoods.Domain\MarketGoods.Domain.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
 </Project>
