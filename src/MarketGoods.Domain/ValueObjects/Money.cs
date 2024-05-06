@@ -1,20 +1,20 @@
 ﻿namespace MarketGoods.Domain.ValueObjects
 {
-    public partial record Price
+    public partial record Money
     {
         public decimal Value { get; init; }
         public Currency Currency { get; init; }
-        private Price(decimal value, Currency currency)
+        private Money(decimal value, Currency currency)
         {
             Value = value;
             Currency = currency;
         }
-        public static Price Create(decimal value, Currency currency)
+        public static Money Create(decimal value, Currency currency)
         {
             if (value < 0)
                 return null;
 
-            return new Price(value, currency);
+            return new Money(value, currency);
         }
     }
 }

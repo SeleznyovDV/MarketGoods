@@ -23,6 +23,7 @@
                 .HasConversion(phoneNumber => phoneNumber.Value, value => PhoneNumber.Create(value)!)
                 .HasMaxLength(10);
 
+            // Обсудить конфигурацию сложных ValueObjects.
             builder.OwnsOne(c => c.Address, addressBuilder =>
             {
                 addressBuilder.OwnsOne(a => a.City, cityBuilder =>
