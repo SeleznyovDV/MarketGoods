@@ -1,4 +1,4 @@
 ﻿namespace MarketGoods.Domain.Users
 {
-    public record UsersId(Guid Value);
+    public record UserId(Guid Value);
 }

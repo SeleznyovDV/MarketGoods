@@ -9,7 +9,9 @@
         public ReviewId Id { get; private set; }
         public string Text { get; private set; }
         public User User { get; private set; }
+        public UserId UserId { get; private set; }
         public Good Good { get; private set; }
+        public GoodId GoodId { get; private set; }
         public Raiting Rating { get; private set; }
         public Review(ReviewId reviewId, string text, User user, Good good, Raiting raiting)
         {

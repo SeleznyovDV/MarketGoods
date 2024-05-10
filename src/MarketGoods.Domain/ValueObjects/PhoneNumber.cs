@@ -4,7 +4,6 @@
 
     public partial record PhoneNumber
 	{
-		private const int DefaultLength = 9;
 		private const string Pattern = @"^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$";
 		private PhoneNumber(string value) => Value = value;
 
@@ -13,8 +12,7 @@
 		public static PhoneNumber? Create(string value)
 		{
 			if (string.IsNullOrEmpty(value)
-				|| !PhoneNumberRegex().IsMatch(value)
-				|| value.Length != DefaultLength)
+				|| !PhoneNumberRegex().IsMatch(value))
 			{
 				return null;
 			}

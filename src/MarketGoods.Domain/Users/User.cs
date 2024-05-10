@@ -3,7 +3,7 @@
     using MarketGoods.Domain.ValueObjects;
     public sealed class User
     {
-        public UsersId Id { get; private set; }
+        public UserId Id { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string FullName { get => $"{FirstName} {LastName}"; }
@@ -11,7 +11,7 @@
         public Address Address { get; private set; }
         public string Email { get; private set; }
         public UserRole Role { get; private set; }
-        public User(UsersId id, string firstName, string lastName, string email, Address address, PhoneNumber phoneNumber, UserRole role)
+        public User(UserId id, string firstName, string lastName, string email, Address address, PhoneNumber phoneNumber, UserRole role)
         {
             Id = id;
             FirstName = firstName;
@@ -21,7 +21,16 @@
             PhoneNumber = phoneNumber;
             Role = role;
         }
-        public User()
+        public User(UserId id, string firstName, string lastName, string email, PhoneNumber phoneNumber, UserRole role)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            PhoneNumber = phoneNumber;
+            Role = role;
+        }
+        private User()
         {
             
         }

@@ -11,7 +11,7 @@
         public string? IntercomCode { get; init; }
         public string PostalCode { get; init; }
 
-        private Address(City city, string street, string houseNumber, string? entrance, int? floor, string? intercomCode, string flat, string postalCode)
+        public Address(City city, string street, string houseNumber, string? entrance, int? floor, string? intercomCode, string flat, string postalCode)
         {
             City = city;
             Street = street;
@@ -21,6 +21,10 @@
             Floor = floor;
             Flat = flat;
             PostalCode = postalCode;
+        }
+        private Address()
+        {
+            
         }
 
         public static Address? Create(City city, string street, string houseNumber, string? entrance, int? floor, string? intercomCode, string flat, string postalCode)

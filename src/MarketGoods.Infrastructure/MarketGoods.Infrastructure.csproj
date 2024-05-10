@@ -14,6 +14,6 @@
     <ProjectReference Include="..\MarketGoods.Domain\MarketGoods.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <Folder Include="Persistence\Migrations\" />
   </ItemGroup>
 </Project>

@@ -13,15 +13,20 @@
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
                 .HasConversion(orderId => orderId.Value, value => new OrderId(value));
-            
-            // Обсудить, как правильна конфигруировать связи OneToOne, OneToMany.
-            // 1. Вариант.
-            builder.HasOne(x => x.User).WithOne();
-            // 2. Вариант.
-            builder.HasOne<User>().WithOne();
 
-            builder.HasOne(x => x.Payment).WithOne();
-            builder.HasMany(x => x.Goods).WithOne();
+            builder
+                .HasOne(x => x.User)
+                .WithMany()
+                .HasForeignKey(x => x.UserId)
+                .IsRequired();
+
+            builder.HasOne(x => x.Payment)
+                .WithMany()
+                .HasForeignKey(x => x.PaymentId)
+                .IsRequired(false);
+
+            builder.HasMany(x => x.Goods)
+                .WithMany();
         }
     }
 }

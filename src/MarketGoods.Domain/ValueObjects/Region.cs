@@ -4,10 +4,16 @@
     {
         public string Code { get; init; }
         public string Name { get; init; }
-        private Region (string code, string name)
+        public Region (string code, string name)
         {
             Code = code;
             Name = name;
+        }
+        
+        // HACK: EF HACK.
+        private Region()
+        {
+            
         }
 
         public static Region? Create(string code, string name)

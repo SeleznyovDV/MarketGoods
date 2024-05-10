@@ -2,7 +2,7 @@
 {
     public interface IUserRepository
 	{
-		Task<User?> GetAsync(UsersId id);
+		Task<User?> GetAsync(UserId id);
 		IQueryable<User> GetAll(Func<User, bool> filter);
 		void Update(User user);
 		void Remove(User user);

@@ -1,1 +1,1 @@
-dotnet ef migrations add initialMigration -p src\MarketGoodsDDD.Infrastructure -s  src\MarketGoodsDDD.WebAPI -o Persistence/Migrations
+dotnet ef migrations add initialMigration -p src\MarketGoods.Infrastructure -s  src\MarketGoods.WebAPI -o Persistence/Migrations

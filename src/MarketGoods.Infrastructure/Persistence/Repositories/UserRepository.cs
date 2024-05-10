@@ -29,7 +29,7 @@
             return _db.Users.Where(filter).AsQueryable();
         }
 
-        public async Task<User?> GetAsync(UsersId id)
+        public async Task<User?> GetAsync(UserId id)
         {
             return await _db.Users.FindAsync(id);
         }

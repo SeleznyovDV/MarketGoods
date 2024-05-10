@@ -4,10 +4,15 @@
     {
         public string Name { get; init; }
         public Region Region { get; init; }
-        private City(string name, Region region)
+        public City(string name, Region region)
         {
             Name = name;
             Region = region;
+        }
+        // HACK: EF core.
+        private City()
+        {
+                
         }
         public static City? Create(string name, Region region) 
         {

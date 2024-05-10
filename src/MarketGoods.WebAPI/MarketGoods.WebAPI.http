@@ -1,0 +1,7 @@
+﻿@MarketGoods.WebAPI_HostAddress = http://localhost:5293
+
+GET {{MarketGoods.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+

@@ -13,7 +13,7 @@
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id)
-                .HasConversion(goodId => goodId.Value, value => new GoodId(value)!);
+                .HasConversion(goodId => goodId.Value, value => new GoodId(value));
             
             builder.Property(x => x.Name).HasMaxLength(100);
             builder.Property(x => x.Description).HasMaxLength(500);

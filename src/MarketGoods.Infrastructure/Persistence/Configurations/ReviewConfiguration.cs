@@ -11,12 +11,20 @@
             builder.ToTable("Reviews");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).HasConversion(reviewId => reviewId.Value, value => new ReviewId(value));
-            builder.HasOne(x => x.User).WithOne();
-            builder.HasOne(x => x.Good).WithOne();
+            builder.HasOne(x => x.User)
+                .WithMany()
+                .HasForeignKey(x => x.UserId)
+                .IsRequired();
+
+            builder.HasOne(x => x.Good)
+                .WithMany()
+                .HasForeignKey(x => x.GoodId)
+                .IsRequired();
+
             builder.OwnsOne(x => x.Rating, raitingBuilder =>
             {
-                raitingBuilder.Property(x => x.Quality).HasColumnName("QualityRaiting");
-                raitingBuilder.Property(x => x.Satisfaction).HasColumnName("SatisfactionRaiting");
+                raitingBuilder.Property(x => x.Quality).HasColumnName("QualityRaiting").IsRequired();
+                raitingBuilder.Property(x => x.Satisfaction).HasColumnName("SatisfactionRaiting").IsRequired();
             });
         }
     }
