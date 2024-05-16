@@ -6,7 +6,7 @@
     using MarketGoods.Domain.Users;
     using MarketGoods.Domain.ValueObjects;
     using MediatR;
-    internal sealed class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ErrorOr<Unit>>
+    public sealed class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ErrorOr<Unit>>
     {
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;

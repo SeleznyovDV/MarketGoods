@@ -1,10 +1,6 @@
 ﻿namespace MarketGoods.Application.Users.Commands
 {
     using FluentValidation;
-    using MarketGoods.Domain.Users;
-    using MarketGoods.Domain.ValueObjects;
-    using MediatR;
-    using System.Data;
 
     public class CreateUserCommandValidation : AbstractValidator<CreateUserCommand>
     {
