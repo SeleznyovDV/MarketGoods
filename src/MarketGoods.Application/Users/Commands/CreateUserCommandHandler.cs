@@ -1,10 +1,12 @@
 ﻿namespace MarketGoods.Application.Users.Commands
 {
+    using ErrorOr;
+    using MarketGoods.Domain.DomainErrors;
     using MarketGoods.Domain.Primitives;
     using MarketGoods.Domain.Users;
     using MarketGoods.Domain.ValueObjects;
     using MediatR;
-    internal sealed class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Unit>
+    internal sealed class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ErrorOr<Unit>>
     {
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -14,18 +16,18 @@
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public async Task<Unit> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<ErrorOr<Unit>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             try
             { 
                 if (PhoneNumber.Create(request.PhoneNumber) is not PhoneNumber phoneNumber) 
                 {
-                    return Unit.Value;
+                    return Errors.User.PhoneNumberHasIncorrectFormat;
                 }
 
                 if (!Enum.TryParse<UserRole>(request.Role, out var role))
                 {
-                    return Unit.Value;
+                    return Errors.User.RoleHasIncorrectValue;
                 }
 
                 User user = new User(
@@ -38,12 +40,13 @@
 
                 await _userRepository.AddAsync(user);
                 await _unitOfWork.SaveChangesAsync();
+                
+                return Unit.Value;
             }
             catch (Exception ex) 
             {
-                throw new NotImplementedException(ex.Message);
+                return Error.Failure($"{nameof(CreateUserCommand)}.Failure occurred error", ex.Message);
             }
-            return Unit.Value;
         }
     }
 }

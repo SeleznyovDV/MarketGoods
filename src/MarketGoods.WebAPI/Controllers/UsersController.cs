@@ -17,7 +17,7 @@
         {
             var createResult = await _sender.Send(command);
 
-            return Ok(createResult);
+            return createResult.Match(userId => Ok(userId), errors => Problem(errors));
         }
     }
 }

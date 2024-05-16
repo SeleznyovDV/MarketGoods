@@ -2,6 +2,7 @@ using MarketGoods.WebAPI;
 using MarketGoods.WebAPI.Extensions;
 using MarketGoods.Infrastructure;
 using MarketGoods.Application;
+using MarketGoods.WebAPI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
+
+app.UseExceptionHandler("/error");
+
+//app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
 
