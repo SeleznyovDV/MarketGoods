@@ -2,6 +2,7 @@
 {
     using MarketGoods.Application.Data;
     using MarketGoods.Domain.Users;
+    using Microsoft.EntityFrameworkCore;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -24,9 +25,10 @@
             _db.Users.Remove(user);
         }
 
-        public IQueryable<User> GetAll(Func<User, bool> filter)
+        public IQueryable<User> GetAll(Func<User, bool> filter = null)
         {
-            return _db.Users.Where(filter).AsQueryable();
+            
+            return filter is null? _db.Users.AsQueryable() : _db.Users.Where(filter).AsQueryable();
         }
 
         public async Task<User?> GetAsync(UserId id)

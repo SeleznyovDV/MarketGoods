@@ -13,7 +13,4 @@
   <ItemGroup>
     <ProjectReference Include="..\MarketGoods.Domain\MarketGoods.Domain.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Users\Queries\" />
-  </ItemGroup>
 </Project>

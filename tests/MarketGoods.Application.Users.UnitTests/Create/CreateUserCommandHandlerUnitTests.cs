@@ -3,10 +3,10 @@
     using MarketGoods.Domain.Primitives;
     using MarketGoods.Domain.Users;
     using Moq;
-    using MarketGoods.Application.Users.Commands;
     using ErrorOr;
     using MarketGoods.Domain.DomainErrors;
     using FluentAssertions;
+    using MarketGoods.Application.Users.Commands.Create;
 
     public class CreateUserCommandHandlerUnitTests
     {

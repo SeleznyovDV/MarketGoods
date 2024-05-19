@@ -3,7 +3,7 @@
     public interface IOrderRepository
 	{
 		Task<Order?> GetAsync(OrderId id);
-		IQueryable<Order> GetAll(Func<Order, bool> filter);
+		IQueryable<Order> GetAll(Func<Order, bool> filter = null);
 		void Update(Order order);
 		void Remove(Order order);
 		Task AddAsync(Order order);

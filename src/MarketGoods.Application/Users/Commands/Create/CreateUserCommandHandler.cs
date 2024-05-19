@@ -1,4 +1,4 @@
-﻿namespace MarketGoods.Application.Users.Commands
+﻿namespace MarketGoods.Application.Users.Commands.Create
 {
     using ErrorOr;
     using MarketGoods.Domain.DomainErrors;
@@ -19,8 +19,8 @@
         public async Task<ErrorOr<Unit>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             try
-            { 
-                if (PhoneNumber.Create(request.PhoneNumber) is not PhoneNumber phoneNumber) 
+            {
+                if (PhoneNumber.Create(request.PhoneNumber) is not PhoneNumber phoneNumber)
                 {
                     return Errors.User.PhoneNumberHasIncorrectFormat;
                 }
@@ -39,11 +39,11 @@
                     role);
 
                 await _userRepository.AddAsync(user);
-                await _unitOfWork.SaveChangesAsync();
-                
+                await _unitOfWork.SaveChangesAsync(cancellationToken);
+
                 return Unit.Value;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 return Error.Failure($"{nameof(CreateUserCommand)}.Failure occurred error", ex.Message);
             }

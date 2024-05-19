@@ -24,9 +24,9 @@
             _db.Orders.Remove(order);
         }
 
-        public IQueryable<Order> GetAll(Func<Order, bool> filter)
+        public IQueryable<Order> GetAll(Func<Order, bool> filter = null)
         {
-            return _db.Orders.Where(filter).AsQueryable();
+            return filter is null? _db.Orders.AsQueryable() : _db.Orders.Where(filter).AsQueryable();
         }
 
         public async Task<Order?> GetAsync(OrderId id)

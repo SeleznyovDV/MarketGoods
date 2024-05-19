@@ -24,9 +24,9 @@
             _db.Payments.Remove(payment);
         }
 
-        public IQueryable<Payment> GetAll(Func<Payment, bool> filter)
+        public IQueryable<Payment> GetAll(Func<Payment, bool> filter = null)
         {
-            return _db.Payments.Where(filter).AsQueryable();
+            return filter is null? _db.Payments.AsQueryable() : _db.Payments.Where(filter).AsQueryable();
         }
 
         public async Task<Payment?> GetAsync(PaymentId id)

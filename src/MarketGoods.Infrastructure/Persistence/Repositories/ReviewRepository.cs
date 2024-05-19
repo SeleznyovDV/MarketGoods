@@ -24,9 +24,9 @@
             _db.Reviews.Remove(review);
         }
 
-        public IQueryable<Review> GetAll(Func<Review, bool> filter)
+        public IQueryable<Review> GetAll(Func<Review, bool> filter = null)
         {
-            return _db.Reviews.Where(filter).AsQueryable();
+            return filter is null? _db.Reviews.AsQueryable() : _db.Reviews.Where(filter).AsQueryable();
         }
 
         public async Task<Review?> GetAsync(ReviewId id)

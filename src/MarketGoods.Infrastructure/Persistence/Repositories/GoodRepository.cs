@@ -2,6 +2,8 @@
 {
     using MarketGoods.Application.Data;
     using MarketGoods.Domain.Goods;
+    using Microsoft.EntityFrameworkCore;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -24,9 +26,9 @@
             _db.Goods.Remove(good);
         }
 
-        public IQueryable<Good> GetAll(Func<Good, bool> filter)
+        public IQueryable<Good> GetAll(Func<Good, bool> filter = null)
         {
-            return _db.Goods.Where(filter).AsQueryable();
+            return filter is null? _db.Goods.AsQueryable() : _db.Goods.Where(filter).AsQueryable();
         }
 
         public async Task<Good?> GetAsync(GoodId id)

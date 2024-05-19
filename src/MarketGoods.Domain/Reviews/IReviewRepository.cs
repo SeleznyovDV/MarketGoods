@@ -3,7 +3,7 @@
     public interface IReviewRepository
 	{
 		Task<Review?> GetAsync(ReviewId id);
-		IQueryable<Review> GetAll(Func<Review, bool> filter);
+		IQueryable<Review> GetAll(Func<Review, bool> filter = null);
 		void Update(Review review);
 		void Remove(Review review);
 		Task AddAsync(Review review);
