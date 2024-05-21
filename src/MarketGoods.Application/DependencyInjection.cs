@@ -1,7 +1,7 @@
 ﻿namespace MarketGoods.Application
 {
     using FluentValidation;
-    using FluentValidation.AspNetCore;
+    using MarketGoods.Application.Profiles;
     using Microsoft.Extensions.DependencyInjection;
     public static class DependencyInjection
     {
@@ -14,6 +14,7 @@
             });
             
             services.AddValidatorsFromAssembly(ApplicationAssemblyReference.Assembly);
+            services.AddAutoMapper(ApplicationAssemblyReference.Assembly);
 
             return services;
         }

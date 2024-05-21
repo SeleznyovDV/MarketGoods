@@ -1,21 +1,26 @@
 ﻿namespace MarketGoods.Application.Users.Queries.Get
 {
+    using AutoMapper;
+    using MarketGoods.Application.Users.Commons;
     using MarketGoods.Domain.Users;
     using MediatR;
     using Microsoft.EntityFrameworkCore;
     using System.Threading;
     using System.Threading.Tasks;
 
-    public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, IEnumerable<User>>
+    public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, IList<GetUserResponse>>
     {
         private readonly IUserRepository _userRepository;
-        public GetAllUsersQueryHandler(IUserRepository userRepository)
+        private readonly IMapper _mapper;
+        public GetAllUsersQueryHandler(IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository ?? throw new ArgumentException(nameof(userRepository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
-        public async Task<IEnumerable<User>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
+        public async Task<IList<GetUserResponse>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
-            return await _userRepository.GetAll().ToListAsync(cancellationToken);
+            var users = await _userRepository.GetAll().ToListAsync(cancellationToken);
+            return users.Select(x => _mapper.Map<GetUserResponse>(x)).ToList();
         }
     }
 }

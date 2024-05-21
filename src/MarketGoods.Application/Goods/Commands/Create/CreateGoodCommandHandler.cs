@@ -14,6 +14,11 @@
     {
         private readonly IGoodRepository _goodRepository;
         private readonly IUnitOfWork _unitOfWork;
+        public CreateGoodCommandHandler(IGoodRepository goodRepositor, IUnitOfWork unitOfWork)
+        {
+            _goodRepository = goodRepositor ?? throw new ArgumentNullException(nameof(goodRepositor));
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(_unitOfWork));
+        }
         public async Task<ErrorOr<Unit>> Handle(CreateGoodCommand request, CancellationToken cancellationToken)
         {
             try 

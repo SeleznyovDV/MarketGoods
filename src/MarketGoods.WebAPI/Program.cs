@@ -28,6 +28,10 @@ app.UseExceptionHandler("/error");
 
 //app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-app.MapControllers();
+app.UseRouting();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action}");
 
 app.Run();

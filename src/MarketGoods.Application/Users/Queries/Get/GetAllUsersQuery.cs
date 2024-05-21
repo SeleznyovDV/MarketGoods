@@ -1,6 +1,6 @@
 ﻿namespace MarketGoods.Application.Users.Queries.Get
 {
-    using MarketGoods.Domain.Users;
+    using MarketGoods.Application.Users.Commons;
     using MediatR;
-    public record GetAllUsersQuery() : IRequest<IEnumerable<User>>;
+    public record GetAllUsersQuery() : IRequest<IList<GetUserResponse>>;
 }
