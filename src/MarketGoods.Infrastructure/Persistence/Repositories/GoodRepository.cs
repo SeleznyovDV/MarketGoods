@@ -2,8 +2,6 @@
 {
     using MarketGoods.Application.Data;
     using MarketGoods.Domain.Goods;
-    using Microsoft.EntityFrameworkCore;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -16,9 +14,10 @@
             _db = db ?? throw new ArgumentNullException(nameof(db));
         }
 
-        public async Task AddAsync(Good good)
+        public async Task<Good?> AddAsync(Good good)
         {
             await _db.Goods.AddAsync(good);
+            return good;
         }
 
         public void Remove(Good good)

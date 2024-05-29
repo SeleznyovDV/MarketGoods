@@ -1,7 +1,10 @@
 ﻿namespace MarketGoods.Application
 {
+    using ErrorOr;
     using FluentValidation;
+    using MarketGoods.Application.Abstractions.Behaviors;
     using MarketGoods.Application.Profiles;
+    using MediatR;
     using Microsoft.Extensions.DependencyInjection;
     public static class DependencyInjection
     {
@@ -15,6 +18,7 @@
             
             services.AddValidatorsFromAssembly(ApplicationAssemblyReference.Assembly);
             services.AddAutoMapper(ApplicationAssemblyReference.Assembly);
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidatorBehavior<,>));
 
             return services;
         }

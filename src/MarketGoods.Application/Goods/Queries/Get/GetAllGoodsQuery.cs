@@ -2,5 +2,5 @@
 {
     using MarketGoods.Application.Goods.Commons;
     using MediatR;
-    public record GetAllGoodsQuery() : IRequest<IList<GetGoodResponse>>;
+    public record GetAllGoodsQuery() : IRequest<IList<GoodResponse>>;
 }

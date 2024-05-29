@@ -9,7 +9,7 @@
     using AutoMapper;
     using MarketGoods.Application.Goods.Commons;
 
-    public class GetAllGoodsQueryHandler : IRequestHandler<GetAllGoodsQuery, IList<GetGoodResponse>>
+    public class GetAllGoodsQueryHandler : IRequestHandler<GetAllGoodsQuery, IList<GoodResponse>>
     {
         private readonly IGoodRepository _goodRepository;
         private readonly IMapper _mapper;
@@ -19,10 +19,10 @@
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<IList<GetGoodResponse>> Handle(GetAllGoodsQuery request, CancellationToken cancellationToken)
+        public async Task<IList<GoodResponse>> Handle(GetAllGoodsQuery request, CancellationToken cancellationToken)
         {
             var goods = await _goodRepository.GetAll().ToListAsync(cancellationToken);
-            return goods.Select(c => _mapper.Map<GetGoodResponse>(c)).ToList();
+            return goods.Select(c => _mapper.Map<GoodResponse>(c)).ToList();
         }
     }
 }

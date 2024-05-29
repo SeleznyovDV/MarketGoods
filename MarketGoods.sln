@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketGoods.Infrastructure"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketGoods.WebAPI", "src\MarketGoods.WebAPI\MarketGoods.WebAPI.csproj", "{99EA2B1A-BC01-4761-A817-B17B24E749E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketGoods.Application.Users.UnitTests", "tests\MarketGoods.Application.Users.UnitTests\MarketGoods.Application.Users.UnitTests.csproj", "{00B3C821-A8EF-4C8A-B62E-05A95DBD5CF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketGoods.Application.Users.UnitTests", "tests\MarketGoods.Application.Users.UnitTests\MarketGoods.Application.Users.UnitTests.csproj", "{00B3C821-A8EF-4C8A-B62E-05A95DBD5CF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketGoods.Application.Goods.UnitTests", "tests\MarketGoods.Application.Goods.UnitTests\MarketGoods.Application.Goods.UnitTests.csproj", "{4CEF2EFC-4AB3-40A0-B94D-3AFE67667C60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{00B3C821-A8EF-4C8A-B62E-05A95DBD5CF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00B3C821-A8EF-4C8A-B62E-05A95DBD5CF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00B3C821-A8EF-4C8A-B62E-05A95DBD5CF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CEF2EFC-4AB3-40A0-B94D-3AFE67667C60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CEF2EFC-4AB3-40A0-B94D-3AFE67667C60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CEF2EFC-4AB3-40A0-B94D-3AFE67667C60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CEF2EFC-4AB3-40A0-B94D-3AFE67667C60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

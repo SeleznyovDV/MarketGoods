@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    public class GetGoodQueryHandler : IRequestHandler<GetGoodQuery, GetGoodResponse>
+    public class GetGoodQueryHandler : IRequestHandler<GetGoodQuery, GoodResponse>
     {
         private readonly IGoodRepository _goodRepository;
         private readonly IMapper _mapper;
@@ -16,10 +16,10 @@
             _goodRepository = goodRepository ?? throw new ArgumentNullException(nameof(goodRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(_mapper));
         }
-        public async Task<GetGoodResponse> Handle(GetGoodQuery request, CancellationToken cancellationToken)
+        public async Task<GoodResponse> Handle(GetGoodQuery request, CancellationToken cancellationToken)
         {
             var good = await _goodRepository.GetAsync(new GoodId(request.GoodId));
-            return _mapper.Map<GetGoodResponse>(good);
+            return _mapper.Map<GoodResponse>(good);
         }
     }
 }

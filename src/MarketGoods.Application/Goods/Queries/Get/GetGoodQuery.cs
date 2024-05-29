@@ -3,5 +3,5 @@
     using MarketGoods.Application.Goods.Commons;
     using MediatR;
 
-    public record GetGoodQuery(Guid GoodId) : IRequest<GetGoodResponse>;
+    public record GetGoodQuery(Guid GoodId) : IRequest<GoodResponse>;
 }

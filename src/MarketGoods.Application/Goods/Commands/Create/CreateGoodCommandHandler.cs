@@ -1,7 +1,8 @@
 ﻿namespace MarketGoods.Application.Goods.Commands.Create
 {
+    using AutoMapper;
     using ErrorOr;
-    using MarketGoods.Application.Users.Commands;
+    using MarketGoods.Application.Goods.Commons;
     using MarketGoods.Domain.DomainErrors;
     using MarketGoods.Domain.Goods;
     using MarketGoods.Domain.Primitives;
@@ -10,16 +11,18 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    public class CreateGoodCommandHandler : IRequestHandler<CreateGoodCommand, ErrorOr<Unit>>
+    public class CreateGoodCommandHandler : IRequestHandler<CreateGoodCommand, ErrorOr<GoodResponse>>
     {
         private readonly IGoodRepository _goodRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public CreateGoodCommandHandler(IGoodRepository goodRepositor, IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+        public CreateGoodCommandHandler(IGoodRepository goodRepositor, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _goodRepository = goodRepositor ?? throw new ArgumentNullException(nameof(goodRepositor));
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(_unitOfWork));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
-        public async Task<ErrorOr<Unit>> Handle(CreateGoodCommand request, CancellationToken cancellationToken)
+        public async Task<ErrorOr<GoodResponse>> Handle(CreateGoodCommand request, CancellationToken cancellationToken)
         {
             try 
             {
@@ -28,7 +31,7 @@
                     return Errors.Goods.PriceHasIncorrectValue;
                 }
 
-                if (!Enum.TryParse<Currency>(request.Currency, out var currencyValue))
+                if (!Enum.TryParse<Currency>(request.Currency, out var currencyValue) || request.Currency.All(x => char.IsNumber(x)))
                 {
                     return Errors.Goods.CurrencyHasIncorrectValue;
                 }
@@ -41,7 +44,7 @@
                 await _goodRepository.AddAsync(good);
                 await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-                return Unit.Value;
+                return _mapper.Map<GoodResponse>(good);
             }
             catch (Exception ex) 
             {

@@ -40,21 +40,6 @@
         }
 
         [Fact]
-        public async Task HandleCreateUser_WhenEmailHasIncorrectFormat_ShouldReturnValidationError()
-        {
-            //Arrange
-            CreateUserCommand command = new CreateUserCommand("Seleznyov", "Dmitriy", "+79299131040", "email", "Administrator");
-
-            //Act
-            var result = await _handler.Handle(command, default);
-
-            //Assert
-
-            result.IsError.Should().BeTrue();
-            result.FirstError.Type.Should().Be(ErrorType.Validation);
-        }
-
-        [Fact]
         public async Task HandleCreateUser_WhenRolelHasIncorrectValue_ShouldReturnValidationError()
         {
             //Arrange

@@ -25,7 +25,7 @@
                     return Errors.User.PhoneNumberHasIncorrectFormat;
                 }
 
-                if (!Enum.TryParse<UserRole>(request.Role, out var role))
+                if (!Enum.TryParse<UserRole>(request.Role, out var role) || request.Role.All(x => char.IsNumber(x)))
                 {
                     return Errors.User.RoleHasIncorrectValue;
                 }

@@ -2,6 +2,8 @@
 {
     using FluentValidation;
     using MarketGoods.Application.Goods.Commands.Create;
+    using MarketGoods.Application.Goods.Commands.Delete;
+    using MarketGoods.Application.Goods.Commands.Update;
     using MarketGoods.Application.Goods.Queries.Get;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
@@ -19,7 +21,7 @@
         public async Task<IActionResult> Create([FromBody] CreateGoodCommand command)
         {
             var response = await _sender.Send(command);
-            return response.Match(userId => Ok(userId), errors => Problem(errors));
+            return response.Match(response => Ok(response), errors => Problem(errors));
         }
         [HttpGet, Route("getall")]
         public async Task<IActionResult> GetAll()
@@ -32,6 +34,20 @@
         {
             var response = await _sender.Send(new GetGoodQuery(id));
             return Ok(response);
+        }
+
+        [HttpPut, Route("update")]
+        public async Task<IActionResult> Update([FromBody] UpdateGoodCommand command)
+        {
+            var response = await _sender.Send(command);
+            return response.Match(response => Ok(response), errors => Problem(errors));
+        }
+
+        [HttpDelete, Route("delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var response = await _sender.Send(new DeleteGoodCommand(id));
+            return response.Match(response => Ok(response), errors => Problem(errors));
         }
     }
 }
