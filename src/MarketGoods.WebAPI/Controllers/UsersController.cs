@@ -1,6 +1,7 @@
 ﻿namespace MarketGoods.WebAPI.Controllers
 {
     using MarketGoods.Application.Users.Commands.Create;
+    using MarketGoods.Application.Users.Commands.Delete;
     using MarketGoods.Application.Users.Queries.Get;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,19 @@
         {
             var response = await _sender.Send(new GetAllUsersQuery());
             return Ok(response);
+        }
+
+        [HttpGet, Route("get/{id}")]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            var response = await _sender.Send(new GetUserQuery(id));
+            return Ok(response);
+        }
+        [HttpDelete, Route("delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var response = await _sender.Send(new DeleteUserCommand(id));
+            return response.Match(id => Ok(id), errors => Problem(errors));
         }
     }
 }

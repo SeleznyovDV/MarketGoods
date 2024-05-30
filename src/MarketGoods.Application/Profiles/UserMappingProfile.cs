@@ -8,8 +8,8 @@
     {
         public UserMappingProfile()
         {
-            CreateMap<User, GetUserResponse>()
-                .ConstructUsing(x => new GetUserResponse(x.Id.Value, x.FirstName, x.LastName, x.PhoneNumber.Value, x.Email, x.Role.ToString()));
+            CreateMap<User, UserResponse>()
+                .ConstructUsing(x => new UserResponse(x.Id.Value, x.FirstName, x.LastName, x.PhoneNumber.Value, x.Email, x.Role.ToString()));
         }
     }
 }

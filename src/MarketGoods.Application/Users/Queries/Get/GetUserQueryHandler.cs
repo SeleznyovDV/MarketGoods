@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    public class GetUserQueryHandler : IRequestHandler<GetUserQuery, GetUserResponse>
+    public class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserResponse>
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
@@ -16,10 +16,10 @@
             _userRepository = userRepository ?? throw new ArgumentException(nameof(userRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
-        public async Task<GetUserResponse> Handle(GetUserQuery request, CancellationToken cancellationToken)
+        public async Task<UserResponse> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetAsync(new UserId(request.UserId));
-            return _mapper.Map<GetUserResponse>(user);
+            return _mapper.Map<UserResponse>(user);
         }
     }
 }

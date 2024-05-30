@@ -2,5 +2,5 @@
 {
     using MarketGoods.Application.Users.Commons;
     using MediatR;
-    public record GetUserQuery(Guid UserId) : IRequest<GetUserResponse>;
+    public record GetUserQuery(Guid UserId) : IRequest<UserResponse>;
 }

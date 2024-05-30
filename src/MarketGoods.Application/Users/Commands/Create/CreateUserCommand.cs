@@ -1,7 +1,7 @@
-﻿using ErrorOr;
-using MediatR;
-
-namespace MarketGoods.Application.Users.Commands.Create
+﻿namespace MarketGoods.Application.Users.Commands.Create
 {
-    public record CreateUserCommand(string FirstName, string LastName, string PhoneNumber, string Email, string Role) : IRequest<ErrorOr<Unit>>;
+    using ErrorOr;
+    using MarketGoods.Application.Users.Commons;
+    using MediatR;
+    public record CreateUserCommand(string FirstName, string LastName, string PhoneNumber, string Email, string Role) : IRequest<ErrorOr<UserResponse>>;
 }

@@ -7,18 +7,21 @@
     using MarketGoods.Domain.DomainErrors;
     using FluentAssertions;
     using MarketGoods.Application.Users.Commands.Create;
+    using AutoMapper;
 
     public class CreateUserCommandHandlerUnitTests
     {
         private readonly Mock<IUserRepository> _mockUserRepository;
         private readonly Mock<IUnitOfWork> _mockUnitOfWork;
+        private readonly Mock<IMapper> _mapper; 
         private readonly CreateUserCommandHandler _handler;
 
         public CreateUserCommandHandlerUnitTests()
         {
             _mockUserRepository = new Mock<IUserRepository>();
             _mockUnitOfWork = new Mock<IUnitOfWork>();
-            _handler = new CreateUserCommandHandler(_mockUserRepository.Object, _mockUnitOfWork.Object);
+            _mapper = new Mock<IMapper>();
+            _handler = new CreateUserCommandHandler(_mockUserRepository.Object, _mockUnitOfWork.Object, _mapper.Object);
         }
 
         [Fact]

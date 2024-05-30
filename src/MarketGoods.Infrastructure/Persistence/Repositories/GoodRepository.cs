@@ -14,10 +14,9 @@
             _db = db ?? throw new ArgumentNullException(nameof(db));
         }
 
-        public async Task<Good?> AddAsync(Good good)
+        public async Task AddAsync(Good good)
         {
             await _db.Goods.AddAsync(good);
-            return good;
         }
 
         public void Remove(Good good)

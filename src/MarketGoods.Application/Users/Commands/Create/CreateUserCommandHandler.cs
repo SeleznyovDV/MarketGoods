@@ -1,22 +1,26 @@
 ﻿namespace MarketGoods.Application.Users.Commands.Create
 {
+    using AutoMapper;
     using ErrorOr;
+    using MarketGoods.Application.Users.Commons;
     using MarketGoods.Domain.DomainErrors;
     using MarketGoods.Domain.Primitives;
     using MarketGoods.Domain.Users;
     using MarketGoods.Domain.ValueObjects;
     using MediatR;
-    public sealed class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ErrorOr<Unit>>
+    public sealed class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ErrorOr<UserResponse>>
     {
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public CreateUserCommandHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+        public CreateUserCommandHandler(IUserRepository userRepository, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _userRepository = userRepository ?? throw new ArgumentException(nameof(userRepository));
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<ErrorOr<Unit>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<ErrorOr<UserResponse>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -41,7 +45,7 @@
                 await _userRepository.AddAsync(user);
                 await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-                return Unit.Value;
+                return _mapper.Map<UserResponse>(user);
             }
             catch (Exception ex)
             {
