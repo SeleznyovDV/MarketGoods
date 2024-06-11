@@ -7,7 +7,6 @@
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
-            builder.ToTable("ApplicationUsers");
             builder.HasMany(u => u.Roles)
                 .WithOne()
                 .HasForeignKey(r => r.UserId)

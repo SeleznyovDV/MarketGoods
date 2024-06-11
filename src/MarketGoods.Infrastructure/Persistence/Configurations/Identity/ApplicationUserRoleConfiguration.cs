@@ -3,7 +3,7 @@
     using MarketGoods.Infrastructure.Models;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
-    public class ApplicationUserRoleConfiguration
+    public class ApplicationUserRoleConfiguration : IEntityTypeConfiguration<ApplicationUserRole>
     {
         public void Configure(EntityTypeBuilder<ApplicationUserRole> builder)
         {

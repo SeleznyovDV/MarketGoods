@@ -7,8 +7,10 @@
     using MarketGoods.Domain.Primitives;
     using MarketGoods.Domain.Reviews;
     using MarketGoods.Domain.Users;
+    using MarketGoods.Infrastructure.Models;
     using MarketGoods.Infrastructure.Persistence;
     using MarketGoods.Infrastructure.Persistence.Repositories;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +33,18 @@
 
             return services;
         }
-	}
+
+        public static IServiceCollection AddIdentity(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContext<ApplicationIdentityDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("identityConnection")));
+            services.AddScoped<IApplicationIdentityDbContext>(options => options.GetRequiredService<ApplicationIdentityDbContext>());
+
+            var identityBuilder = services.AddIdentityCore<ApplicationUser>();
+            identityBuilder.AddEntityFrameworkStores<ApplicationIdentityDbContext>();
+            identityBuilder.AddSignInManager<SignInManager<ApplicationUser>>();
+
+            return services;
+        }
+    }
 }
 
