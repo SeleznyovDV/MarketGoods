@@ -3,7 +3,9 @@
     using MarketGoods.Application.Users.Commands.Create;
     using MarketGoods.Application.Users.Commands.Delete;
     using MarketGoods.Application.Users.Queries.Get;
+    using MarketGoods.Application.Users.Queries.Login;
     using MediatR;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("users")]
@@ -39,6 +41,14 @@
         {
             var response = await _sender.Send(new DeleteUserCommand(id));
             return response.Match(id => Ok(id), errors => Problem(errors));
+        }
+
+        [HttpPost("login")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Loginasync([FromBody] LoginQuery query)
+        {
+            var result = await _sender.Send(query);
+            return result.Match(user => Ok(user), errors => Problem(errors));
         }
     }
 }

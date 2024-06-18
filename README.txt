@@ -1,1 +1,2 @@
 dotnet ef migrations add initialMigration -p src\MarketGoods.Infrastructure -s  src\MarketGoods.WebAPI -o Persistence/Migrations
+dotnet ef migrations add IdentityMigration -p src\MarketGoods.Infrastructure -s  src\MarketGoods.WebAPI -o Persistence/Migrations -c ApplicationIdentityDbContext

@@ -8,8 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services
-    .AddPresentation()
+    .AddPresentation(builder.Configuration)
     .AddInfrastructure(builder.Configuration)
+    .AddIdentity(builder.Configuration)
     .AddApplication();
 
 var app = builder.Build();
@@ -25,8 +26,7 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.UseExceptionHandler("/error");
-
-//app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseRouting();
 
