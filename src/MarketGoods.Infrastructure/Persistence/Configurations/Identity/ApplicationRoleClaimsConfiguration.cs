@@ -8,7 +8,7 @@ namespace MarketGoods.Infrastructure.Persistence.Configurations.Identity
     {
         public void Configure(EntityTypeBuilder<IdentityRoleClaim<string>> builder)
         {
-            builder.ToTable("ApplicationRoleClaims");
+            builder.ToTable("RoleClaims");
         }
     }
 }

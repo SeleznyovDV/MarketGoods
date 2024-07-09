@@ -3,11 +3,11 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
     using Microsoft.EntityFrameworkCore;
-    public class ApplicationUserClaimsConfiguration : IEntityTypeConfiguration<IdentityUserClaim<string>>
+    public class ApplicationRecipientClaimsConfiguration : IEntityTypeConfiguration<IdentityUserClaim<string>>
     {
         public void Configure(EntityTypeBuilder<IdentityUserClaim<string>> builder)
         {
-            builder.ToTable("ApplicationUserClaims");
+            builder.ToTable("RecipientClaims");
         }
     }
 }

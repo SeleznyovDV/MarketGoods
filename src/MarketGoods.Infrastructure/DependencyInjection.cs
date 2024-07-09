@@ -39,9 +39,10 @@
             services.AddDbContext<ApplicationIdentityDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("identityConnection")));
             services.AddScoped<IApplicationIdentityDbContext>(options => options.GetRequiredService<ApplicationIdentityDbContext>());
 
-            var identityBuilder = services.AddIdentityCore<ApplicationUser>();
+            var identityBuilder = services.AddIdentityCore<ApplicationRecipient>();
+            identityBuilder.AddRoles<IdentityRole<string>>();
             identityBuilder.AddEntityFrameworkStores<ApplicationIdentityDbContext>();
-            identityBuilder.AddSignInManager<SignInManager<ApplicationUser>>();
+            identityBuilder.AddSignInManager<SignInManager<ApplicationRecipient>>();
 
             return services;
         }

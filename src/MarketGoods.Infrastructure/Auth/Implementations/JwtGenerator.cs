@@ -18,7 +18,7 @@ public class JwtGenerator : IJwtGenerator
         _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["TokenKey"]));
     }
     
-    public string CreateToken(ApplicationUser user)
+    public string CreateToken(ApplicationRecipient user)
     {
         var claims = new List<Claim>(
         [

@@ -4,5 +4,5 @@ namespace MarketGoods.Infrastructure.Auth.Abstractions;
 
 public interface IJwtGenerator
 {
-    string CreateToken(ApplicationUser user);
+    string CreateToken(ApplicationRecipient user);
 }

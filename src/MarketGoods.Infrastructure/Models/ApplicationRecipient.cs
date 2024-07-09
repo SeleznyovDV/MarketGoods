@@ -2,14 +2,12 @@
 {
     using Microsoft.AspNetCore.Identity;
     using System.ComponentModel.DataAnnotations.Schema;
-
-    [Table("Users", Schema = "Identity")]
-    public class ApplicationUser : IdentityUser
+    public class ApplicationRecipient : IdentityUser
     {
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
 
-        public virtual ICollection<ApplicationUserRole> Roles { get; } = new List<ApplicationUserRole>();
+        public virtual ICollection<IdentityUserRole<string>> Roles { get; } = new List<IdentityUserRole<string>>();
     }
 }
