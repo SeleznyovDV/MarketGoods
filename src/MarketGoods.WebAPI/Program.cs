@@ -22,10 +22,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     app.ApplyMigrations();
 }
+app.UseExceptionHandler("/error");
+
+app.UseResponseCompression();
+
+app.UseResponseCaching();
 
 app.UseAuthorization();
 
-app.UseExceptionHandler("/error");
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseRouting();

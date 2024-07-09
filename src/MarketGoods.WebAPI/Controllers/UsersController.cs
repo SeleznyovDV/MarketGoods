@@ -3,7 +3,7 @@
     using MarketGoods.Application.Users.Commands.Create;
     using MarketGoods.Application.Users.Commands.Delete;
     using MarketGoods.Application.Users.Queries.Get;
-    using MarketGoods.Application.Users.Queries.Login;
+    using MarketGoods.WebAPI.Caching;
     using MediatR;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -24,6 +24,7 @@
         }
 
         [HttpGet, Route("getall")]
+        [ResponseCache(CacheProfileName = DefaultCacheProfiles.Default5)]
         public async Task<IActionResult> GetAll()
         {
             var response = await _sender.Send(new GetAllUsersQuery());
@@ -41,14 +42,6 @@
         {
             var response = await _sender.Send(new DeleteUserCommand(id));
             return response.Match(id => Ok(id), errors => Problem(errors));
-        }
-
-        [HttpPost("login")]
-        [AllowAnonymous]
-        public async Task<IActionResult> Loginasync([FromBody] LoginQuery query)
-        {
-            var result = await _sender.Send(query);
-            return result.Match(user => Ok(user), errors => Problem(errors));
         }
     }
 }
