@@ -5,6 +5,8 @@
     using Microsoft.AspNetCore.Mvc;
     using MarketGoods.Application.Recipients.Queries.Login;
     using MarketGoods.Application.Recipients.Commands.Register;
+    
+    [AllowAnonymous]
     public class AuthController : ApiController
     {
         private readonly ISender _sender;

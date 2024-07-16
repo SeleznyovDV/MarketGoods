@@ -13,22 +13,28 @@ namespace MarketGoods.Infrastructure.Persistence.Seeds
                 Name = RoleName.Administrator.ToString(),
             };
 
-            var roles = new List<IdentityRole<string>> { admin };
+            var customer = new IdentityRole<string>()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = RoleName.Customer.ToString(),
+            };
+
+            var roles = new List<IdentityRole<string>> { admin, customer };
             
             foreach (var role in roles)
                 await roleManager.CreateAsync(role);
         }
-        public static async Task SeedUsersAsync(UserManager<ApplicationRecipient> userManager)
+        public static async Task SeedUsersAsync(UserManager<Recipient> userManager)
         {
 
-            var firstUser = new ApplicationRecipient
+            var firstUser = new Recipient
             {
                 FirstName = "Dmitriy",
                 LastName = "Seleznyov",
                 Email = "selezda@mail.ru",
                 UserName = "DmitriySeleznyov",
             };
-            var users = new List<ApplicationRecipient> { firstUser };
+            var users = new List<Recipient> { firstUser };
 
             foreach (var user in users)
                 await userManager.CreateAsync(user);

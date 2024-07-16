@@ -24,7 +24,7 @@
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<string>>>();
                 await IdentitySeed.SeedRolesAsync(roleManager);
 
-                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationRecipient>>();
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<Recipient>>();
                 await IdentitySeed.SeedUsersAsync(userManager);
             }
 			catch (Exception ex) 

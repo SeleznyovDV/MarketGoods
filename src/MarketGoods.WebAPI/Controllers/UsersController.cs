@@ -5,7 +5,6 @@
     using MarketGoods.Application.Users.Queries.Get;
     using MarketGoods.WebAPI.Caching;
     using MediatR;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("users")]
@@ -15,12 +14,6 @@
         public UsersController(ISender sender)
         {
             _sender = sender ?? throw new ArgumentNullException(nameof(sender));
-        }
-        [HttpPost, Route("create")]
-        public async Task<IActionResult> Create([FromBody] CreateUserCommand command)
-        {
-            var response = await _sender.Send(command);
-            return response.Match(userId => Ok(userId), errors => Problem(errors));
         }
 
         [HttpGet, Route("getall")]

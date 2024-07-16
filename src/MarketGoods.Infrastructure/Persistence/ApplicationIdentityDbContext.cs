@@ -7,7 +7,7 @@
     using MarketGoods.Infrastructure.Models;
     using MarketGoods.Infrastructure.Persistence.Configurations.Identity;
 
-    public class ApplicationIdentityDbContext : IdentityDbContext<ApplicationRecipient,
+    public class ApplicationIdentityDbContext : IdentityDbContext<Recipient,
         IdentityRole<string>, string, IdentityUserClaim<string>, IdentityUserRole<string>,
         IdentityUserLogin<string>, IdentityRoleClaim<string>, IdentityUserToken<string>>,
         IApplicationIdentityDbContext

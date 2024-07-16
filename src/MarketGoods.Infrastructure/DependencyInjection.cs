@@ -1,5 +1,7 @@
 ﻿namespace MarketGoods.Infrastructure
 {
+    using FluentValidation;
+    using MarketGoods.Application;
     using MarketGoods.Application.Data;
     using MarketGoods.Domain.Goods;
     using MarketGoods.Domain.Orders;
@@ -7,6 +9,8 @@
     using MarketGoods.Domain.Primitives;
     using MarketGoods.Domain.Reviews;
     using MarketGoods.Domain.Users;
+    using MarketGoods.Infrastructure.Auth.Abstractions;
+    using MarketGoods.Infrastructure.Auth.Implementations;
     using MarketGoods.Infrastructure.Models;
     using MarketGoods.Infrastructure.Persistence;
     using MarketGoods.Infrastructure.Persistence.Repositories;
@@ -25,7 +29,15 @@
 
             services.AddScoped<IUnitOfWork>(options => options.GetRequiredService<ApplicationDbContext>());
 
-			services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IJwtGenerator, JwtGenerator>();
+
+            services.AddValidatorsFromAssembly(InfrastructureAssemblyReference.Assembly);
+            services.AddMediatR(config =>
+            {
+                config.RegisterServicesFromAssemblies(InfrastructureAssemblyReference.Assembly);
+            });
+
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IGoodRepository, GoodRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IPaymentRepository, PaymentRepository>();
@@ -39,10 +51,10 @@
             services.AddDbContext<ApplicationIdentityDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("identityConnection")));
             services.AddScoped<IApplicationIdentityDbContext>(options => options.GetRequiredService<ApplicationIdentityDbContext>());
 
-            var identityBuilder = services.AddIdentityCore<ApplicationRecipient>();
+            var identityBuilder = services.AddIdentityCore<Recipient>();
             identityBuilder.AddRoles<IdentityRole<string>>();
             identityBuilder.AddEntityFrameworkStores<ApplicationIdentityDbContext>();
-            identityBuilder.AddSignInManager<SignInManager<ApplicationRecipient>>();
+            identityBuilder.AddSignInManager<SignInManager<Recipient>>();
 
             return services;
         }

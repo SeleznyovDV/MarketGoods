@@ -2,7 +2,7 @@
 {
     using Microsoft.AspNetCore.Identity;
     using System.ComponentModel.DataAnnotations.Schema;
-    public class ApplicationRecipient : IdentityUser
+    public class Recipient : IdentityUser
     {
         public string FirstName { get; set; }
 
