@@ -1,6 +1,5 @@
 ﻿namespace MarketGoods.WebAPI.Controllers
 {
-    using FluentValidation;
     using MarketGoods.Application.Goods.Commands.Create;
     using MarketGoods.Application.Goods.Commands.Delete;
     using MarketGoods.Application.Goods.Commands.Update;
