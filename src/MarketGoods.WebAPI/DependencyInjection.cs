@@ -98,12 +98,14 @@
                         ValidateIssuer = false
                     };
                 });
-
-            services.AddAuthorization(options =>
+            
+            services.AddAuthorization(setup =>
             {
-                //options.FallbackPolicy = new AuthorizationPolicyBuilder()
-                //    .RequireAuthenticatedUser()
-                //    .Build();
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+
+                setup.FallbackPolicy = policy;
             });
 
             return services;

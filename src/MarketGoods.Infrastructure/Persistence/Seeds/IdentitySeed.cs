@@ -37,7 +37,7 @@ namespace MarketGoods.Infrastructure.Persistence.Seeds
             var users = new List<Recipient> { firstUser };
 
             foreach (var user in users)
-                await userManager.CreateAsync(user);
+                await userManager.CreateAsync(user, "qazwsX123!");
 
             firstUser = await userManager.FindByEmailAsync(firstUser.Email);
             if (firstUser is not null)
