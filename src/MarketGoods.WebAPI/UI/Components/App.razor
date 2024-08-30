@@ -1,0 +1,22 @@
+﻿@page "/"
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Market Goods</title>
+    <base href="/" />
+</head>
+
+<body>
+    <h1>@Message @name</h1>
+    <h2>@DisplayTime()</h2>
+</body>
+</html>
+@code {
+    string name = "Dmitriy";
+    string DisplayTime()
+    {
+        return $"Current time: {DateTime.Now.ToString("HH:mm:ss")}";
+    }
+    string Message { get; } = "Hello";
+}

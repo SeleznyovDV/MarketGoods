@@ -3,6 +3,8 @@ using MarketGoods.WebAPI.Extensions;
 using MarketGoods.Infrastructure;
 using MarketGoods.Application;
 using MarketGoods.WebAPI.Middlewares;
+using MarketGoods.WebAPI.UI.Components;
+using MarketGoods.WebAPI.UI.Components.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,10 +31,17 @@ app.UseResponseCompression();
 app.UseResponseCaching();
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
+
+app.UseStaticFiles();
+
+app.UseAntiforgery();
+
+app.MapRazorComponents<Login>();
 
 app.Run();

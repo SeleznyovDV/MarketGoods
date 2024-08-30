@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketGoods.WebAPI", "src\M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketGoods.Application.Users.UnitTests", "tests\MarketGoods.Application.Users.UnitTests\MarketGoods.Application.Users.UnitTests.csproj", "{00B3C821-A8EF-4C8A-B62E-05A95DBD5CF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketGoods.Application.Goods.UnitTests", "tests\MarketGoods.Application.Goods.UnitTests\MarketGoods.Application.Goods.UnitTests.csproj", "{4CEF2EFC-4AB3-40A0-B94D-3AFE67667C60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketGoods.Application.Goods.UnitTests", "tests\MarketGoods.Application.Goods.UnitTests\MarketGoods.Application.Goods.UnitTests.csproj", "{4CEF2EFC-4AB3-40A0-B94D-3AFE67667C60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

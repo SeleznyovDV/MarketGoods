@@ -105,8 +105,17 @@
                     .RequireAuthenticatedUser()
                     .Build();
 
-                setup.FallbackPolicy = policy;
+                bool needAuthentication = !configuration.GetValue<bool>("AuthenticationOff");
+                if (needAuthentication)
+                {
+                    setup.FallbackPolicy = policy;
+                }
             });
+
+            // Blazor pages.
+
+            services.AddRazorComponents()
+                .AddInteractiveServerComponents();
 
             return services;
         }
