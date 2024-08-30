@@ -1,29 +1,27 @@
-# Используем образ .NET SDK для сборки приложения
+#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER app
+WORKDIR /app
+EXPOSE 8080
+
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["src/MarketGoods.WebAPI/MarketGoods.WebAPI.csproj", "src/MarketGoods.WebAPI/"]
+COPY ["src/MarketGoods.Application/MarketGoods.Application.csproj", "src/MarketGoods.Application/"]
+COPY ["src/MarketGoods.Domain/MarketGoods.Domain.csproj", "src/MarketGoods.Domain/"]
+COPY ["src/MarketGoods.Infrastructure/MarketGoods.Infrastructure.csproj", "src/MarketGoods.Infrastructure/"]
+RUN dotnet restore "./src/MarketGoods.WebAPI/MarketGoods.WebAPI.csproj"
+COPY . .
+WORKDIR "/src/src/MarketGoods.WebAPI"
+RUN dotnet build "./MarketGoods.WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# Устанавливаем рабочую директорию для сборки
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "./MarketGoods.WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
 WORKDIR /app
-
-# Копируем файлы проектных файлов .csproj в рабочую директорию
-COPY *.csproj ./
-
-# Выполняем восстановление зависимостей проекта
-RUN dotnet restore
-
-# Копируем все остальные файлы в рабочую директорию
-COPY . ./
-
-# Собираем и публикуем приложение в выходную директорию "out" с конфигурацией "Release"
-RUN dotnet publish -c Release -o out
-
-# Используем образ .NET ASP.NET для запуска приложения
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
-
-# Устанавливаем рабочую директорию для запуска приложения
-WORKDIR /app
-
-# Копируем собранное приложение из предыдущего этапа в рабочую директорию
-COPY --from=build /app/out .
-
-# Устанавливаем точку входа для контейнера, чтобы запустить приложение
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "MarketGoods.WebAPI.dll"]

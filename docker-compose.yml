@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  marketgoods.webapi:
+    image: ${DOCKER_REGISTRY-}marketgoodswebapi
+    build:
+      context: .
+      dockerfile: src/MarketGoods.WebAPI/Dockerfile
